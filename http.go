@@ -16,6 +16,12 @@ type TodoPageData struct {
 	Todos     []Todo
 }
 
+type ContactDetails struct {
+	Email   string
+	Subject string
+	Message string
+}
+
 func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -23,6 +29,7 @@ func main() {
 	})
 
 	tmpl := template.Must(template.ParseFiles("todo.html"))
+	tmpl1 := template.Must(template.ParseFiles("form.html"))
 
 	http.HandleFunc("/to", func(w http.ResponseWriter, r *http.Request) {
 		data := TodoPageData{
@@ -34,6 +41,22 @@ func main() {
 			},
 		}
 		tmpl.Execute(w, data)
+	})
+
+	http.HandleFunc("/form", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			tmpl1.Execute(w, nil)
+			return
+		}
+		details := ContactDetails{
+			Email:   r.FormValue("email"),
+			Subject: r.FormValue("subject"),
+			Message: r.FormValue("message"),
+		}
+
+		_ = details
+
+		tmpl1.Execute(w, struct{ Success bool }{true})
 	})
 
 	fs := http.FileServer(http.Dir("static/"))
