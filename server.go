@@ -38,6 +38,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"git.com/soukainna/app"
 )
 
 // func sayhelloName(w http.ResponseWriter, r *http.Request) {
@@ -74,6 +76,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 // }
 
 func main() {
+
+	fmt.Println("my name is", app.Nom)
+	//fmt.Println(pack.hello)
 	//http.HandleFunc("/", sayhelloName) // setting router rule
 	http.HandleFunc("/login", login)
 
