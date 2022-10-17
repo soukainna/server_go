@@ -133,6 +133,14 @@ func main() {
 		fmt.Println(result)
 	}
 
+	/**************** delete DOCUMENT ********************/
+	deleteResult, err := collection.DeleteOne(context.TODO(), bson.D{{"name", "john"}})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("deleted %v document in the trainers collection \n", deleteResult.DeletedCount)
+
 	fmt.Println("connected to mongoDB!")
 	// fmt.Println("Inserted a single document: ", insertResult.InsertedID)
 	// fmt.Println("Inserted multiple documents: ", insertManyResult.InsertedIDs)
