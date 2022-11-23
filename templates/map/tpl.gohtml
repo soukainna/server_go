@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Map</title>
+   
+  </head>
+  <body>
+    <h2>Mappage</h2>
+    <h1>List of names </h1>
+    {{range .}}
+    <li>{{.}}</li>
+    {{end}}
+    
+    {{range $key, $value := .}}
+    <li>{{$key}} - {{$value}}</li>
+    {{end}}
+  </body>
+</html>

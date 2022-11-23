@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Home</title>
+   
+  </head>
+  <body>
+    <h2>Home page</h2>
+    <h1>List of names</h1>
+    {{range .}}
+    <li>{{.}}</li>
+    {{end}}
+    
+    {{range $index, $element := .}}
+    <li>{{$index}} - {{$element}}</li>
+    {{end}}
+  </body>
+</html>
